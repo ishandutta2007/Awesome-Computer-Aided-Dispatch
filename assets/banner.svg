@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <radialGradient id="pulse-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <style>
+    @keyframes radar-sweep {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes pulse-ring {
+      0% { r: 15px; opacity: 0.8; }
+      50% { r: 65px; opacity: 0.2; }
+      100% { r: 110px; opacity: 0; }
+    }
+    @keyframes ping-dot {
+      0%, 100% { opacity: 0.2; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+    @keyframes flow-line {
+      0% { stroke-dashoffset: 200; }
+      100% { stroke-dashoffset: 0; }
+    }
+    .radar-line {
+      transform-origin: 1020px 170px;
+      animation: radar-sweep 8s linear infinite;
+    }
+    .pulse-c1 {
+      transform-origin: 1020px 170px;
+      animation: pulse-ring 4s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+    .pulse-c2 {
+      transform-origin: 1020px 170px;
+      animation: pulse-ring 4s cubic-bezier(0.215, 0.61, 0.355, 1) 2s infinite;
+    }
+    .beacon {
+      animation: ping-dot 2s ease-in-out infinite;
+    }
+    .flow-path {
+      stroke-dasharray: 12, 12;
+      animation: flow-line 5s linear infinite;
+    }
+  </style>
+
+  <!-- Base Background -->
+  <rect width="1200" height="340" fill="url(#bg-grad)" rx="16"/>
+
+  <!-- Grid Pattern Overlay -->
+  <g opacity="0.08" stroke="#ffffff" stroke-width="1">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect width="40" height="40" fill="none"/>
+      <path d="M 40 0 L 0 0 0 40"/>
+    </pattern>
+    <rect width="1200" height="340" fill="url(#grid)"/>
+  </g>
+
+  <!-- Background Dynamic Dispatch Radar Sweeper (Right side background) -->
+  <g transform="translate(0, 0)">
+    <circle cx="1020" cy="170" r="120" fill="none" stroke="#334155" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="1020" cy="170" r="80" fill="none" stroke="#334155" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="1020" cy="170" r="40" fill="none" stroke="#334155" stroke-width="1.5" opacity="0.5"/>
+    
+    <!-- Radar Dynamic Rings -->
+    <circle class="pulse-c1" cx="1020" cy="170" r="10" fill="none" stroke="#38bdf8" stroke-width="2"/>
+    <circle class="pulse-c2" cx="1020" cy="170" r="10" fill="none" stroke="#818cf8" stroke-width="2"/>
+
+    <!-- Radar Line -->
+    <line class="radar-line" x1="1020" y1="170" x2="1020" y2="50" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- Dispatch Unit Signal Beacons (Background dynamic elements) -->
+    <circle cx="1045" cy="125" r="5" fill="#ef4444" class="beacon"/>
+    <circle cx="980" cy="195" r="5" fill="#3b82f6" class="beacon" style="animation-delay: 0.7s;"/>
+    <circle cx="1060" cy="210" r="5" fill="#10b981" class="beacon" style="animation-delay: 1.4s;"/>
+  </g>
+
+  <!-- Connecting Animated Dispatch Lines -->
+  <path class="flow-path" d="M 50 280 C 300 280, 400 310, 750 290" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.3"/>
+
+  <!-- Left Side Badges / Pills (Dynamic background styling) -->
+  <g transform="translate(60, 42)">
+    <rect x="0" y="0" width="165" height="28" rx="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1" opacity="0.9"/>
+    <text x="14" y="18" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="1">🚨 PUBLIC SAFETY</text>
+
+    <rect x="177" y="0" width="145" height="28" rx="14" fill="#1e293b" stroke="#818cf8" stroke-width="1" opacity="0.9"/>
+    <text x="191" y="18" fill="#818cf8" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="1">🚑 911 DISPATCH</text>
+
+    <rect x="334" y="0" width="160" height="28" rx="14" fill="#1e293b" stroke="#c084fc" stroke-width="1" opacity="0.9"/>
+    <text x="348" y="18" fill="#c084fc" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="1">🚒 OPEN SOURCE</text>
+  </g>
+
+  <!-- FOREGROUND TITLE & SUBTITLE (High contrast & perfectly legible) -->
+  <g transform="translate(60, 140)">
+    <!-- Main Title -->
+    <text x="0" y="0" fill="url(#text-grad)" font-family="system-ui, -apple-system, sans-serif" font-size="46" font-weight="900" letter-spacing="-0.5">
+      Awesome Computer-Aided Dispatch
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="42" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500">
+      Curated Ecosystem of SaaS CAD Platforms, 911 Call Center Software &amp; Open-Source Dispatch Systems
+    </text>
+  </g>
+
+  <!-- Feature Pills / Highlights Bottom Foreground -->
+  <g transform="translate(60, 248)">
+    <!-- Card 1 -->
+    <rect x="0" y="0" width="220" height="48" rx="10" fill="url(#card-grad)" stroke="#334155" stroke-width="1"/>
+    <text x="16" y="20" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700">🏢 SaaS CAD Vendors</text>
+    <text x="16" y="36" fill="#64748b" font-family="system-ui, -apple-system, sans-serif" font-size="11">Motorola, Hexagon, Tyler &amp; Cloud</text>
+
+    <!-- Card 2 -->
+    <rect x="236" y="0" width="220" height="48" rx="10" fill="url(#card-grad)" stroke="#334155" stroke-width="1"/>
+    <text x="252" y="20" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700">⚡ Open Source &amp; Self-Hosted</text>
+    <text x="252" y="36" fill="#64748b" font-family="system-ui, -apple-system, sans-serif" font-size="11">Resgrid, SnailyCAD, Tickets CAD</text>
+
+    <!-- Card 3 -->
+    <rect x="472" y="0" width="220" height="48" rx="10" fill="url(#card-grad)" stroke="#334155" stroke-width="1"/>
+    <text x="488" y="20" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700">📡 Real-Time AVL &amp; Mapping</text>
+    <text x="488" y="36" fill="#64748b" font-family="system-ui, -apple-system, sans-serif" font-size="11">Unit Tracking, GIS &amp; Protocols</text>
+  </g>
+
+</svg>
